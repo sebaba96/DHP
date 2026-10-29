@@ -6,6 +6,7 @@ require __DIR__ . '/includes/bootstrap.php';
 $errors = [];
 $old = [
     'ime' => '',
+    'email' => '',
     'telefon' => '',
     'poruka' => '',
 ];
@@ -17,7 +18,7 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') === 'POST') {
 }
 
 $pageTitle = 'Kontakt';
-$pageDescription = 'Razgovarajmo o tvom projektu. Telefon: ' . CONTACT_PHONE . '. Adresa: ' . CONTACT_ADDRESS . '.';
+$pageDescription = 'Razgovarajmo o tvom projektu. E-pošta: ' . CONTACT_EMAIL . '.';
 $currentPage = 'kontakt.php';
 
 require __DIR__ . '/includes/header.php';
@@ -33,14 +34,10 @@ require __DIR__ . '/includes/header.php';
     <div class="container contact-grid">
         <aside class="contact-aside">
             <h2>Razgovarajmo o tvom projektu</h2>
-            <p>Nazovi me ili pošalji poruku s kratkim opisom što trebaš. Javljam se u roku od radnog dana.</p>
+            <p>Napiši mi nekoliko rečenica o tome što trebaš i javljam se u roku od radnog dana. Upit možeš poslati e-poštom ili putem obrasca.</p>
             <p class="contact-mail">
-                <span>Telefon</span>
-                <a href="tel:<?= e(CONTACT_PHONE_TEL) ?>"><?= e(CONTACT_PHONE) ?></a>
-            </p>
-            <p class="contact-mail">
-                <span>Adresa</span>
-                <span class="contact-address"><?= e(CONTACT_ADDRESS) ?></span>
+                <span>E-pošta</span>
+                <a href="mailto:<?= e(CONTACT_EMAIL) ?>"><?= e(CONTACT_EMAIL) ?></a>
             </p>
         </aside>
 
@@ -51,8 +48,8 @@ require __DIR__ . '/includes/header.php';
                 </div>
             <?php elseif ($status === 'call'): ?>
                 <div class="alert alert-error" role="status">
-                    <p>Nazovi me ili pošalji poruku s kratkim opisom što trebaš. Javljam se u roku od radnog dana.</p>
-                    <p><a href="tel:<?= e(CONTACT_PHONE_TEL) ?>"><?= e(CONTACT_PHONE) ?></a></p>
+                    <p>Poruku trenutačno ne mogu poslati obrascem. Pošalji je e-poštom i javljam se u roku od radnog dana.</p>
+                    <p><a href="mailto:<?= e(CONTACT_EMAIL) ?>"><?= e(CONTACT_EMAIL) ?></a></p>
                 </div>
             <?php endif; ?>
 
@@ -77,6 +74,11 @@ require __DIR__ . '/includes/header.php';
                     <label for="ime">Ime i prezime</label>
                     <input id="ime" name="ime" type="text" autocomplete="name" maxlength="80" required value="<?= e($old['ime']) ?>"<?= isset($errors['ime']) ? ' aria-invalid="true" aria-describedby="ime-greska"' : '' ?>>
                     <?php if (isset($errors['ime'])): ?><p class="field-error" id="ime-greska"><?= e($errors['ime']) ?></p><?php endif; ?>
+                </div>
+                <div class="field">
+                    <label for="email">E-pošta</label>
+                    <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required value="<?= e($old['email']) ?>"<?= isset($errors['email']) ? ' aria-invalid="true" aria-describedby="email-greska"' : '' ?>>
+                    <?php if (isset($errors['email'])): ?><p class="field-error" id="email-greska"><?= e($errors['email']) ?></p><?php endif; ?>
                 </div>
                 <div class="field">
                     <label for="telefon">Telefon</label>

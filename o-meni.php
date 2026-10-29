@@ -4,7 +4,7 @@ declare(strict_types=1);
 require __DIR__ . '/includes/bootstrap.php';
 
 $pageTitle = 'O meni';
-$pageDescription = 'Ja sam David Host, ekonomist iz Rijeke. Diplomirao sam na Ekonomskom fakultetu u Rijeci s pohvalom.';
+$pageDescription = 'Ja sam David Host, magistar ekonomije iz Rijeke. Diplomirao sam na Ekonomskom fakultetu u Rijeci s pohvalom.';
 $currentPage = 'o-meni.php';
 
 require __DIR__ . '/includes/header.php';
