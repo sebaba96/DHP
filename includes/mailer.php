@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 use PHPMailer\PHPMailer\PHPMailer;
 
+// Reads a mail setting from the environment, or returns the config value when that variable is missing.
 function mail_setting_string(string $env, string $fallback): string
 {
     $value = getenv($env);
@@ -13,6 +14,7 @@ function mail_setting_string(string $env, string $fallback): string
     return $value;
 }
 
+// Reads a numeric mail setting from the environment, or returns the config value when it is missing or not a whole number.
 function mail_setting_int(string $env, int $fallback): int
 {
     $value = getenv($env);
@@ -23,11 +25,13 @@ function mail_setting_int(string $env, int $fallback): int
     return (int) $value;
 }
 
+// Returns the address that receives contact form messages.
 function contact_recipient(): string
 {
     return mail_setting_string('CONTACT_EMAIL', CONTACT_EMAIL);
 }
 
+// Returns the From address, using the recipient when no sender address is configured.
 function contact_mail_from_address(): string
 {
     $from = mail_setting_string('MAIL_FROM_ADDRESS', MAIL_FROM_ADDRESS);
@@ -35,11 +39,13 @@ function contact_mail_from_address(): string
     return $from !== '' ? $from : contact_recipient();
 }
 
+// Returns the display name used in the From header.
 function contact_mail_from_name(): string
 {
     return mail_setting_string('MAIL_FROM_NAME', MAIL_FROM_NAME);
 }
 
+// Loads PHPMailer through Composer's autoloader when the library is present.
 function load_phpmailer(): bool
 {
     $autoload = dirname(__DIR__) . '/vendor/autoload.php';
@@ -52,6 +58,7 @@ function load_phpmailer(): bool
     return true;
 }
 
+// Sets the message to UTF-8 plain text and chooses SMTP or the server mail transport.
 function configure_contact_transport(PHPMailer $mail): void
 {
     $mail->CharSet = PHPMailer::CHARSET_UTF8;
@@ -84,6 +91,7 @@ function configure_contact_transport(PHPMailer $mail): void
     }
 }
 
+// Builds the contact message from the visitor's name, phone, and text without sending it.
 function compose_contact_message(string $ime, string $telefon, string $poruka): PHPMailer
 {
     if (!load_phpmailer()) {
@@ -103,6 +111,7 @@ function compose_contact_message(string $ime, string $telefon, string $poruka): 
     return $mail;
 }
 
+// Sends the contact message and returns false when PHPMailer cannot deliver it.
 function send_contact_message(string $ime, string $telefon, string $poruka): bool
 {
     try {
