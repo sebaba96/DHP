@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+require_once __DIR__ . '/mailer.php';
+
 $old['ime'] = trim((string) ($_POST['ime'] ?? ''));
 $old['telefon'] = trim((string) ($_POST['telefon'] ?? ''));
 $old['poruka'] = trim((string) ($_POST['poruka'] ?? ''));
@@ -41,29 +43,13 @@ if ($errors !== []) {
 $_SESSION['kontakt_vrijeme'] = time();
 $_SESSION['csrf'] = bin2hex(random_bytes(32));
 
-if (CONTACT_EMAIL === '') {
+if (contact_recipient() === '') {
     $_SESSION['kontakt_status'] = 'call';
     header('Location: kontakt.php');
     exit;
 }
 
-$body = "Nova poruka s weba DHP\n\n"
-    . "Ime: {$old['ime']}\n"
-    . "Telefon: {$old['telefon']}\n\n"
-    . $old['poruka'] . "\n";
-
-$headers = [
-    'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8',
-    'From: ' . CONTACT_EMAIL,
-];
-
-$sent = @mail(
-    CONTACT_EMAIL,
-    'Nova poruka s weba',
-    $body,
-    implode("\r\n", $headers)
-);
+$sent = send_contact_message($old['ime'], $old['telefon'], $old['poruka']);
 
 $_SESSION['kontakt_status'] = $sent ? 'sent' : 'call';
 header('Location: kontakt.php');
