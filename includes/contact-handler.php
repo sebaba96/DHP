@@ -4,6 +4,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/mailer.php';
 
 $old['ime'] = trim((string) ($_POST['ime'] ?? ''));
+$old['email'] = trim((string) ($_POST['email'] ?? ''));
 $old['telefon'] = trim((string) ($_POST['telefon'] ?? ''));
 $old['poruka'] = trim((string) ($_POST['poruka'] ?? ''));
 $honeypot = trim((string) ($_POST['web_stranica'] ?? ''));
@@ -28,6 +29,14 @@ if ($old['ime'] === '' || str_length($old['ime']) < 2 || str_length($old['ime'])
     $errors['ime'] = 'Upiši ime i prezime.';
 }
 
+if (
+    $old['email'] === ''
+    || str_length($old['email']) > 254
+    || !preg_match('/^[a-zA-Z0-9.!#$%&\'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/', $old['email'])
+) {
+    $errors['email'] = 'Upiši ispravnu adresu e-pošte.';
+}
+
 if ($old['telefon'] === '' || str_length($old['telefon']) > 30 || !preg_match('/^[0-9+\s().\/-]+$/u', $old['telefon'])) {
     $errors['telefon'] = 'Upiši broj telefona.';
 }
@@ -49,7 +58,7 @@ if (contact_recipient() === '') {
     exit;
 }
 
-$sent = send_contact_message($old['ime'], $old['telefon'], $old['poruka']);
+$sent = send_contact_message($old['ime'], $old['email'], $old['telefon'], $old['poruka']);
 
 $_SESSION['kontakt_status'] = $sent ? 'sent' : 'call';
 header('Location: kontakt.php');

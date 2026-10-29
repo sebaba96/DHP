@@ -6,6 +6,7 @@ require __DIR__ . '/includes/bootstrap.php';
 $errors = [];
 $old = [
     'ime' => '',
+    'email' => '',
     'telefon' => '',
     'poruka' => '',
 ];
@@ -73,6 +74,11 @@ require __DIR__ . '/includes/header.php';
                     <label for="ime">Ime i prezime</label>
                     <input id="ime" name="ime" type="text" autocomplete="name" maxlength="80" required value="<?= e($old['ime']) ?>"<?= isset($errors['ime']) ? ' aria-invalid="true" aria-describedby="ime-greska"' : '' ?>>
                     <?php if (isset($errors['ime'])): ?><p class="field-error" id="ime-greska"><?= e($errors['ime']) ?></p><?php endif; ?>
+                </div>
+                <div class="field">
+                    <label for="email">E-pošta</label>
+                    <input id="email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required value="<?= e($old['email']) ?>"<?= isset($errors['email']) ? ' aria-invalid="true" aria-describedby="email-greska"' : '' ?>>
+                    <?php if (isset($errors['email'])): ?><p class="field-error" id="email-greska"><?= e($errors['email']) ?></p><?php endif; ?>
                 </div>
                 <div class="field">
                     <label for="telefon">Telefon</label>

@@ -67,14 +67,20 @@
 
   var messages = {
     ime: "Upiši ime i prezime.",
+    email: "Upiši ispravnu adresu e-pošte.",
     telefon: "Upiši broj telefona.",
     poruka: "Napiši kratak opis što trebaš."
   };
+
+  var emailPattern = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
 
   var validate = function (name, value) {
     var text = value.trim();
     if (name === "ime") {
       return text.length >= 2 && text.length <= 80 ? "" : messages.ime;
+    }
+    if (name === "email") {
+      return text.length <= 254 && emailPattern.test(text) ? "" : messages.email;
     }
     if (name === "telefon") {
       return /^[0-9+\s()./-]+$/.test(text) && text.length <= 30 ? "" : messages.telefon;
@@ -109,7 +115,7 @@
 
   form.addEventListener("submit", function (event) {
     var firstInvalid = null;
-    ["ime", "telefon", "poruka"].forEach(function (name) {
+    ["ime", "email", "telefon", "poruka"].forEach(function (name) {
       var field = form.elements[name];
       var message = validate(name, field.value);
       showError(field, message);

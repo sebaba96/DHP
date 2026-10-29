@@ -91,8 +91,8 @@ function configure_contact_transport(PHPMailer $mail): void
     }
 }
 
-// Builds the contact message from the visitor's name, phone, and text without sending it.
-function compose_contact_message(string $ime, string $telefon, string $poruka): PHPMailer
+// Builds the contact message from the visitor's name, email, phone, and text without sending it.
+function compose_contact_message(string $ime, string $email, string $telefon, string $poruka): PHPMailer
 {
     if (!load_phpmailer()) {
         throw new RuntimeException('PHPMailer nije dostupan.');
@@ -102,9 +102,11 @@ function compose_contact_message(string $ime, string $telefon, string $poruka): 
     configure_contact_transport($mail);
     $mail->setFrom(contact_mail_from_address(), contact_mail_from_name());
     $mail->addAddress(contact_recipient());
+    $mail->addReplyTo($email, $ime);
     $mail->Subject = 'Nova poruka s weba';
     $mail->Body = "Nova poruka s weba DHP\n\n"
         . "Ime: {$ime}\n"
+        . "E-pošta: {$email}\n"
         . "Telefon: {$telefon}\n\n"
         . $poruka . "\n";
 
@@ -112,10 +114,10 @@ function compose_contact_message(string $ime, string $telefon, string $poruka): 
 }
 
 // Sends the contact message and returns false when PHPMailer cannot deliver it.
-function send_contact_message(string $ime, string $telefon, string $poruka): bool
+function send_contact_message(string $ime, string $email, string $telefon, string $poruka): bool
 {
     try {
-        return compose_contact_message($ime, $telefon, $poruka)->send();
+        return compose_contact_message($ime, $email, $telefon, $poruka)->send();
     } catch (Throwable $exception) {
         error_log('Kontakt: slanje poruke nije uspjelo. ' . $exception->getMessage());
         return false;
