@@ -4,7 +4,7 @@ declare(strict_types=1);
 require __DIR__ . '/includes/bootstrap.php';
 
 $pageTitle = 'Usluge';
-$pageDescription = 'Poslovni planovi i investicijske studije, zahtjevi za kreditiranje, EU projekti, vanjski CFO, analiza poslovanja, procjena vrijednosti i edukacije.';
+$pageDescription = 'Poslovni planovi i investicijske studije, zahtjevi za kreditiranje, EU projekti, vanjski CFO, analiza poslovanja, procjena vrijednosti i istraživanje tržišta.';
 $currentPage = 'usluge.php';
 
 require __DIR__ . '/includes/header.php';

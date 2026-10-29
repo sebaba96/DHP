@@ -43,28 +43,16 @@ $services = [
         'text' => 'Analiza segmenata, proizvoda, kupaca i troškova: gdje se zarađuje, gdje se gubi i što poduzeti.',
     ],
     [
-        'id' => 'istrazivanje',
-        'icon' => 'search',
-        'title' => 'Istraživanje tržišta i vizualne komunikacije',
-        'text' => 'Analiza konkurencije i potražnje te materijali koji dokumentima daju profesionalan izgled.',
-    ],
-    [
         'id' => 'procjena',
         'icon' => 'decision',
         'title' => 'Procjena vrijednosti poduzeća',
         'text' => 'Savjetodavna procjena vrijednosti za ulazak investitora, kupnju ili prodaju poslovnog udjela, nasljeđivanje i strateške odluke, uz jasno obrazloženu metodologiju.',
     ],
     [
-        'id' => 'edukacije',
-        'icon' => 'chat',
-        'title' => 'Edukacije i radionice',
-        'text' => 'Financijsko planiranje, izvori financiranja i priprema projektnih prijava za poduzetnike i timove.',
-    ],
-    [
-        'id' => 'nekretnine',
-        'icon' => 'build',
-        'title' => 'Dodatno: koordinacija održavanja nekretnina',
-        'text' => 'S timom suradnika koordiniram održavanje nekretnina za vlasnike koji taj posao ne žele voditi sami.',
+        'id' => 'istrazivanje',
+        'icon' => 'search',
+        'title' => 'Istraživanje tržišta i vizualne komunikacije',
+        'text' => 'Analiza konkurencije i potražnje te materijali koji dokumentima daju profesionalan izgled.',
     ],
 ];
 
@@ -110,15 +98,15 @@ $steps = [
 ];
 
 $aboutLead = [
-    'Ja sam David Host, ekonomist iz Rijeke. Diplomirao sam na Ekonomskom fakultetu u Rijeci s pohvalom. Višegodišnje iskustvo u financijama, poslovnom savjetovanju, reviziji i kontrolingu stjecao sam radeći u širokom rasponu djelatnosti, od turizma i proizvodnje do farmacije, IT-ja i trgovine.',
+    'Ja sam David Host, magistar ekonomije iz Rijeke. Diplomirao sam na Ekonomskom fakultetu u Rijeci s pohvalom (smjer financije i bankarstvo), a znanje stalno nadograđujem dodatnim edukacijama ne samo u financijama nego i u područjima koja ih dopunjuju. Višegodišnje iskustvo u financijama, poslovnom savjetovanju, reviziji i kontrolingu stjecao sam radeći u širokom rasponu djelatnosti - od turizma, ugostiteljstva, proizvodnje do farmacije, IT-ja i trgovine.',
     'Vjerujem u jednostavna pravila: brojke moraju biti točne, preporuke jasne, a suradnja transparentna. Ne dobivaš debele dokumente koje nitko ne čita, nego dokumente i savjete koje možeš odmah koristiti.',
 ];
 
 $aboutPoints = [
-    'Ekonomski fakultet Rijeka, diplomirao s pohvalom',
+    'Ekonomski fakultet Rijeka, smjer financije i bankarstvo, diplomirao s pohvalom; kontinuirane edukacije i unaprjeđenje vještina',
     'Financije, kontroling, revizija i poslovno savjetovanje',
     'Iskustvo s obje strane stola: poduzeće i financijer',
-    'Dokumenti pisani za kreditne analitičare i poduzetnike',
+    'Dokumenti pisani za kreditne analitičare, evaluatore i poduzetnike',
 ];
 
 $faqs = [

@@ -25,8 +25,8 @@ require __DIR__ . '/includes/header.php';
             <p class="ledger-kicker">U brojkama</p>
             <ul class="credential-stats">
                 <li>
-                    <strong>9</strong>
-                    <span>Usluga, od poslovnog plana do vanjskog CFO-a</span>
+                    <strong>7</strong>
+                    <span>Usluga, od poslovnog plana do istraživanja tržišta</span>
                 </li>
                 <li>
                     <strong>10</strong>
@@ -44,7 +44,7 @@ require __DIR__ . '/includes/header.php';
             <div class="credential-contact">
                 <p>
                     <span>E-pošta</span>
-                    <a href="mailto:info@dhp.hr">info@dhp.hr</a>
+                    <a href="mailto:<?= e(CONTACT_EMAIL) ?>"><?= e(CONTACT_EMAIL) ?></a>
                 </p>
                 <p>
                     <span>Adresa</span>
@@ -110,8 +110,8 @@ require __DIR__ . '/includes/header.php';
     <div class="container cta-band">
         <div>
             <h2>Razgovarajmo o tvom projektu</h2>
-            <p>Nazovi me ili pošalji poruku s kratkim opisom što trebaš. Javljam se u roku od radnog dana.</p>
-            <p class="cta-meta"><a href="tel:<?= e(CONTACT_PHONE_TEL) ?>"><?= e(CONTACT_PHONE) ?></a> · <?= e(CONTACT_ADDRESS) ?></p>
+            <p>Napiši mi nekoliko rečenica o tome što trebaš i javljam se u roku od radnog dana. Upit možeš poslati e-poštom ili putem obrasca.</p>
+            <p class="cta-meta"><a href="mailto:<?= e(CONTACT_EMAIL) ?>"><?= e(CONTACT_EMAIL) ?></a></p>
         </div>
         <a class="btn btn-primary" href="kontakt.php">Zatraži besplatan uvodni razgovor</a>
     </div>

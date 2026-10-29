@@ -21,13 +21,13 @@ declare(strict_types=1);
             </nav>
             <div class="footer-contact">
                 <p class="footer-label">Kontakt</p>
-                <a href="tel:<?= e(CONTACT_PHONE_TEL) ?>"><?= e(CONTACT_PHONE) ?></a>
+                <a href="mailto:<?= e(CONTACT_EMAIL) ?>"><?= e(CONTACT_EMAIL) ?></a>
                 <p><?= e(CONTACT_ADDRESS) ?></p>
                 <a class="footer-mail" href="kontakt.php">Pošalji poruku</a>
             </div>
         </div>
         <div class="container footer-base">
-            <p class="footer-legal">© <?= date('Y') ?> <?= e(COMPANY_LINE) ?> · <?= e(CONTACT_ADDRESS) ?> · OIB <?= e(OIB) ?></p>
+            <p class="footer-legal">© <?= date('Y') ?> <?= e(COMPANY_LINE) ?> · <?= e(CONTACT_ADDRESS) ?> · <?= e(CONTACT_EMAIL) ?><?= OIB !== '' ? ' · OIB ' . e(OIB) : '' ?></p>
         </div>
     </footer>
     <script src="assets/js/main.js" defer></script>
